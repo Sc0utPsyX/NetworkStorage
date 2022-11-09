@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="703.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storage.client.Client">
+<AnchorPane prefHeight="703.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ClientController" >
    <children>
       <MenuBar prefHeight="25.0" prefWidth="400.0">
         <menus>
@@ -46,7 +46,7 @@
       </MenuBar>
       <Separator layoutX="397.0" layoutY="3.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="3.0" />
       <Separator layoutX="447.0" layoutY="3.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="3.0" />
-      <ListView fx:id="serverlist" layoutX="459.0" layoutY="31.0" prefHeight="630.0" prefWidth="380.0" />
+      <ListView fx:id="serverList" layoutX="459.0" layoutY="31.0" prefHeight="630.0" prefWidth="380.0" />
       <TextArea fx:id="statustext" editable="false" layoutX="9.0" layoutY="663.0" prefHeight="38.0" prefWidth="380.0" />
       <ChoiceBox fx:id="loginselect" layoutX="247.0" prefWidth="150.0">
          <contextMenu>
@@ -62,6 +62,6 @@
       <Button contentDisplay="GRAPHIC_ONLY" layoutX="402.0" layoutY="243.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="43.0" text="Send to local machine" />
       <Button contentDisplay="GRAPHIC_ONLY" layoutX="402.0" layoutY="31.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="43.0" text="Send to network" />
       <ProgressBar fx:id="statusbar" layoutX="459.0" layoutY="663.0" prefHeight="38.0" prefWidth="380.0" progress="0.0" />
-      <ListView fx:id="locallist" layoutX="10.0" layoutY="31.0" prefHeight="630.0" prefWidth="380.0" />
+      <ListView fx:id="localList" layoutX="10.0" layoutY="31.0" prefHeight="630.0" prefWidth="380.0" />
    </children>
 </AnchorPane>
