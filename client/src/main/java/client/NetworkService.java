@@ -1,6 +1,7 @@
 package client;
 
 import files.AbstractMessage;
+import io.netty.handler.codec.http.multipart.FileUpload;
 import io.netty.handler.codec.serialization.ObjectDecoderInputStream;
 import io.netty.handler.codec.serialization.ObjectEncoderOutputStream;
 
