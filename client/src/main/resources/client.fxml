@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="703.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ClientController" >
+<AnchorPane prefHeight="703.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ClientController">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="400.0">
         <menus>
@@ -57,10 +58,35 @@
             </ContextMenu>
          </contextMenu></ChoiceBox>
       <ChoiceBox fx:id="serverselect" layoutX="698.0" prefWidth="150.0" />
-      <Button contentDisplay="GRAPHIC_ONLY" layoutX="402.0" layoutY="453.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="43.0" text="delete local" />
-      <Button contentDisplay="GRAPHIC_ONLY" layoutX="402.0" layoutY="561.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="43.0" text="delete network" />
-      <Button contentDisplay="GRAPHIC_ONLY" layoutX="402.0" layoutY="243.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="43.0" text="Send to local machine" />
-      <Button contentDisplay="GRAPHIC_ONLY" layoutX="402.0" layoutY="31.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="43.0" text="Send to network" />
+      <Button fx:id="delete" contentDisplay="GRAPHIC_ONLY" layoutX="402.0" layoutY="453.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="43.0" text="delete local">
+         <graphic>
+            <ImageView fitHeight="45.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@delete1.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="402.0" layoutY="561.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="43.0" text="refresh">
+         <graphic>
+            <ImageView fitHeight="89.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@refresh.png" />
+               </image></ImageView>
+         </graphic></Button>
+      <Button fx:id="sendLocal" contentDisplay="GRAPHIC_ONLY" layoutX="402.0" layoutY="243.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="43.0" text="Send to local machine">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@back.png" />
+               </image></ImageView>
+         </graphic></Button>
+      <Button fx:id="sendNetwork" contentDisplay="GRAPHIC_ONLY" layoutX="402.0" layoutY="31.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="43.0" text="Send to network">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@forward.png" />
+               </image></ImageView>
+         </graphic></Button>
       <ProgressBar fx:id="statusbar" layoutX="459.0" layoutY="663.0" prefHeight="38.0" prefWidth="380.0" progress="0.0" />
       <ListView fx:id="localList" layoutX="10.0" layoutY="31.0" prefHeight="630.0" prefWidth="380.0" />
    </children>
