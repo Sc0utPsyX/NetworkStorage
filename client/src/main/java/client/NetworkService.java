@@ -14,9 +14,9 @@ public class NetworkService {
     private static ObjectDecoderInputStream in;
 
 
-    public static void start() {
+    public static void start(String host, int port) {
         try {
-            socket = new Socket("localhost", 8189);
+            socket = new Socket(host, port);
             out = new ObjectEncoderOutputStream(socket.getOutputStream());
             in = new ObjectDecoderInputStream(socket.getInputStream());
         } catch (Exception e) {

@@ -8,14 +8,19 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public class FileListRequest extends AbstractMessage {
-
-    private ArrayList<String> serverList = new ArrayList<>();
-
-    public FileListRequest(){
+    public String getDirectory() {
+        return directory;
     }
 
-    void update(){
-        try (Stream<Path> stream = Files.list(Paths.get("cloud_storage"))) {
+    private String directory;
+    private ArrayList<String> serverList = new ArrayList<>();
+
+    public FileListRequest(String directory){
+        this.directory = directory;
+    }
+
+    void update(String directory){
+        try (Stream<Path> stream = Files.list(Paths.get("cloud_storage/" + directory +"/"))) {
             stream.map(p -> p.getFileName().toString()).forEach(o -> serverList.add(o));
         } catch (Exception e) {
             e.printStackTrace();
@@ -23,7 +28,7 @@ public class FileListRequest extends AbstractMessage {
     }
 
     public ArrayList<String> getServerList(){
-        update();
+        update(directory);
         return serverList;
     }
 

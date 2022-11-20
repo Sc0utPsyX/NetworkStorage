@@ -49,15 +49,6 @@
       <Separator layoutX="447.0" layoutY="3.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="3.0" />
       <ListView fx:id="serverList" layoutX="459.0" layoutY="31.0" prefHeight="630.0" prefWidth="380.0" />
       <TextArea fx:id="statustext" editable="false" layoutX="9.0" layoutY="663.0" prefHeight="38.0" prefWidth="380.0" />
-      <ChoiceBox fx:id="loginselect" layoutX="247.0" prefWidth="150.0">
-         <contextMenu>
-            <ContextMenu>
-              <items>
-                <MenuItem mnemonicParsing="false" text="Unspecified Action" />
-              </items>
-            </ContextMenu>
-         </contextMenu></ChoiceBox>
-      <ChoiceBox fx:id="serverselect" layoutX="698.0" prefWidth="150.0" />
       <Button fx:id="delete" contentDisplay="GRAPHIC_ONLY" layoutX="402.0" layoutY="453.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="43.0" text="delete local">
          <graphic>
             <ImageView fitHeight="45.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">

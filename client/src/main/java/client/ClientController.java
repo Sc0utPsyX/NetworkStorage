@@ -1,10 +1,7 @@
 package client;
 
 
-import files.AbstractMessage;
-import files.FileListRequest;
-import files.FileMessage;
-import files.FileRequest;
+import files.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -35,14 +32,16 @@ public class ClientController implements Initializable {
     private ListView<String> localList;
 
     private String sb = "";
+    static String conDirectory = "user1/";
 
-    FileListRequest flr = new FileListRequest();
+
+    FileListRequest flr = new FileListRequest(conDirectory);
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        NetworkService.start();
         Thread t = new Thread(() -> {
             try {
                 while (true) {
+                    NetworkService.start(LogonController.getLoginMessage().serverIp, LogonController.getLoginMessage().serverPort);
                     AbstractMessage am = NetworkService.readObject();
                     if (am instanceof FileMessage) {
                         FileMessage fm = (FileMessage) am;
@@ -50,8 +49,17 @@ public class ClientController implements Initializable {
                         getFileList();
                     }
                     if (am instanceof FileListRequest){
-                        serverList.setItems(FXCollections.observableArrayList(((FileListRequest) am).getServerList()));
+                        getFileList();
                     }
+                    if (am instanceof LoginMessage){
+                        conDirectory = ((LoginMessage) am).directory;
+                        if (conDirectory == null){
+                            Application.changeScene("/logon.fxml");
+                        }
+                        flr = new FileListRequest(conDirectory);
+                        getFileList();
+                    }
+
                 }
             } catch (ClassNotFoundException | IOException e) {
                 e.printStackTrace();
@@ -61,7 +69,6 @@ public class ClientController implements Initializable {
         });
         t.setDaemon(true);
         t.start();
-        getFileList();
         delete.setOnAction((event -> {
             System.out.println("Button Clicked");
         }));
@@ -81,9 +88,8 @@ public class ClientController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            NetworkService.sendMsg(LogonController.getLoginMessage());
         });
-
-
     }
 
     public void getFileList() {
@@ -96,7 +102,7 @@ public class ClientController implements Initializable {
     }
 
     private void streamFileList() {
-        try (Stream<Path> stream = Files.list(Paths.get("local_storage"))){
+        try (Stream<Path> stream = Files.list(Paths.get("local_storage/"))){
             localList.getItems().clear();
             stream.map(p -> p.getFileName().toString()).forEach(o -> localList.getItems().add(o));
             serverList.getItems().clear();
