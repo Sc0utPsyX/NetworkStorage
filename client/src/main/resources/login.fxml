@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="186.0" prefWidth="301.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login">
+   <children>
+      <TextField layoutX="131.0" layoutY="66.0" />
+      <TextField layoutX="131.0" layoutY="104.0" />
+      <ChoiceBox layoutX="131.0" layoutY="15.0" prefWidth="150.0" />
+      <Button layoutX="51.0" layoutY="149.0" mnemonicParsing="false" text="Registration" />
+      <Button layoutX="206.0" layoutY="149.0" mnemonicParsing="false" text="Login" />
+      <Text layoutX="16.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Server">
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="16.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="16.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

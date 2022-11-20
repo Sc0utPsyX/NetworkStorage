@@ -7,7 +7,6 @@ import files.FileMessage;
 import files.FileRequest;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -24,9 +23,11 @@ import java.util.stream.Stream;
 
 public class ClientController implements Initializable {
     public Button delete;
+
     public Button refresh;
     public Button sendLocal;
     public Button sendNetwork;
+
     @FXML
     private ListView<String> serverList;
 
@@ -82,6 +83,7 @@ public class ClientController implements Initializable {
             }
         });
 
+
     }
 
     public void getFileList() {
@@ -132,10 +134,15 @@ public class ClientController implements Initializable {
             System.out.println(sb);
             return true;
         } else {
-            // @TODO Error Message "item not selected".
+            try {
+                Application.changeScene("/notselected.fxml");
+            } catch (IOException e){
+                e.printStackTrace();
+            }
             System.out.println("Not Selected");
             return false;
         }
     }
+
 
 }
