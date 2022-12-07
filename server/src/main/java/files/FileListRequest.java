@@ -1,6 +1,7 @@
 package files;
 
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,8 +20,8 @@ public class FileListRequest extends AbstractMessage {
         this.directory = directory;
     }
 
-    void update(String directory){
-        try (Stream<Path> stream = Files.list(Paths.get("cloud_storage/" + directory +"/"))) {
+    public void update(String directory){
+        try (Stream<Path> stream = Files.list(Paths.get(System.getProperty("user.dir") + File.separator + "server_storage" + File.separator + directory + File.separator))) {
             stream.map(p -> p.getFileName().toString()).forEach(o -> serverList.add(o));
         } catch (Exception e) {
             e.printStackTrace();
