@@ -24,7 +24,7 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(this.getClass().getResource("/client.fxml"));
+        loader.setLocation(this.getClass().getResource("/login.fxml"));
         Parent parent = loader.load();
         Scene scene = new Scene(parent);
         stage.setScene(scene);

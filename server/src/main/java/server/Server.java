@@ -23,6 +23,7 @@ public class Server {
         try (EventLoopGroup masterGroup = new NioEventLoopGroup();
              EventLoopGroup workerGroup = new NioEventLoopGroup())
         {
+            DatabaseHandler.connect();
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(masterGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
@@ -42,6 +43,9 @@ public class Server {
             future.channel().closeFuture().sync();
         } catch (Exception e){
             e.printStackTrace();
+        }
+        finally {
+            DatabaseHandler.disconnect();
         }
     }
 

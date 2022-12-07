@@ -3,6 +3,7 @@ package server;
 import files.FileListRequest;
 import files.FileMessage;
 import files.FileRequest;
+import files.LoginMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
@@ -11,7 +12,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class MainHandler extends ChannelInboundHandlerAdapter {
-    FileListRequest flr = new FileListRequest();
+    LoginMessage login = new LoginMessage();
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         try {
@@ -30,7 +32,15 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
                 Files.write(Paths.get("cloud_storage/" + ((FileMessage) msg).getFilename()), ((FileMessage) msg).getData());
             }
             if (msg instanceof FileListRequest){
-                ctx.writeAndFlush(flr);
+                FileListRequest fileListRequest = new FileListRequest(((FileListRequest) msg).getDirectory());
+                ctx.writeAndFlush(fileListRequest);
+            }
+            if (msg instanceof LoginMessage){
+                String s = DatabaseHandler.readUserDatabase(((LoginMessage) msg).login, ((LoginMessage) msg).getPassword());
+                if (s != null){
+                    login.setDirectory(s);
+                    ctx.writeAndFlush(login);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

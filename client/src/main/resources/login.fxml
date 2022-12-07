@@ -4,26 +4,36 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="186.0" prefWidth="301.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login">
+<AnchorPane prefHeight="703.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.LogonController">
    <children>
-      <TextField layoutX="131.0" layoutY="66.0" />
-      <TextField layoutX="131.0" layoutY="104.0" />
-      <ChoiceBox layoutX="131.0" layoutY="15.0" prefWidth="150.0" />
-      <Button layoutX="51.0" layoutY="149.0" mnemonicParsing="false" text="Registration" />
-      <Button layoutX="206.0" layoutY="149.0" mnemonicParsing="false" text="Login" />
-      <Text layoutX="16.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Server">
+      <PasswordField fx:id="csnPswd" layoutX="338.0" layoutY="319.0" prefHeight="25.0" prefWidth="157.0" />
+      <TextField fx:id="csnLogin" layoutX="338.0" layoutY="283.0" prefHeight="25.0" prefWidth="157.0" />
+      <TextField fx:id="serverIp" layoutX="342.0" layoutY="194.0" promptText="Server IP" />
+      <TextField fx:id="serverPort" layoutX="512.0" layoutY="194.0" prefHeight="25.0" prefWidth="56.0" promptText="Port" />
+      <Button fx:id="btnLogin" layoutX="514.0" layoutY="283.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="56.0" text="Login" />
+      <Text layoutX="226.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
          <font>
-            <Font name="Calibri" size="18.0" />
+            <Font size="16.0" />
          </font>
       </Text>
-      <Text layoutX="16.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+      <Text layoutX="226.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
-            <Font name="Calibri" size="18.0" />
+            <Font size="16.0" />
          </font>
       </Text>
-      <Text layoutX="16.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <Text layoutX="226.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Server">
          <font>
-            <Font name="Calibri" size="18.0" />
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="377.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="384.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Server">
+         <font>
+            <Font size="16.0" />
          </font>
       </Text>
    </children>
