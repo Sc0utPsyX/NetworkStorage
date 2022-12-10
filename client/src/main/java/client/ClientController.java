@@ -9,12 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.stream.Stream;
 
@@ -32,7 +34,7 @@ public class ClientController implements Initializable {
     private ListView<String> localList;
 
     private String sb = "";
-    static String conDirectory = "user1/";
+    static String conDirectory = "user1" + File.separator;
 
 
     FileListRequest flr = new FileListRequest(conDirectory);
@@ -45,11 +47,20 @@ public class ClientController implements Initializable {
                     AbstractMessage am = NetworkService.readObject();
                     if (am instanceof FileMessage) {
                         FileMessage fm = (FileMessage) am;
-                        Files.write(Paths.get("local_storage/" + fm.getFilename()), fm.getData(), StandardOpenOption.CREATE);
+                        Files.write(Paths.get(System.getProperty("user.dir") + File.separator + conDirectory + fm.getFilename()), fm.getData(), StandardOpenOption.CREATE);
                         getFileList();
                     }
                     if (am instanceof FileListRequest){
-                        getFileList();
+                        System.out.println(((FileListRequest) am).getServerList());
+                        Platform.runLater(() -> {
+                            try (Stream<String> stream = ((FileListRequest) am).getServerList().stream()){
+                                serverList.getItems().clear();
+                                stream.distinct().forEach((o) -> serverList.getItems().add(o));
+                            } catch (RuntimeException e)
+                            {
+                                e.printStackTrace();
+                                }
+                            });
                     }
                     if (am instanceof LoginMessage){
                         conDirectory = ((LoginMessage) am).directory;
@@ -89,11 +100,11 @@ public class ClientController implements Initializable {
                 e.printStackTrace();
             }
             NetworkService.sendMsg(LogonController.getLoginMessage());
+            getFileList();
         });
     }
 
     public void getFileList() {
-
         if (Platform.isFxApplicationThread()) {
                 streamFileList();
         } else {
@@ -102,7 +113,7 @@ public class ClientController implements Initializable {
     }
 
     private void streamFileList() {
-        try (Stream<Path> stream = Files.list(Paths.get("local_storage/"))){
+        try (Stream<Path> stream = Files.list(Paths.get(System.getProperty("user.dir") + File.separator))){
             localList.getItems().clear();
             stream.map(p -> p.getFileName().toString()).forEach(o -> localList.getItems().add(o));
             serverList.getItems().clear();
@@ -128,7 +139,7 @@ public class ClientController implements Initializable {
             }
         } else {
             if(isChecked(localList)) {
-                NetworkService.sendMsg(new FileMessage(Paths.get("local_storage/" + sb)));
+                NetworkService.sendMsg(new FileMessage(Paths.get(System.getProperty("user.dir") + File.separator + sb)));
             }
         }
         getFileList();

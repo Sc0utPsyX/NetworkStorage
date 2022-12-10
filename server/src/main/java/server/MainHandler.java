@@ -8,6 +8,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -22,14 +23,14 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
             }
             if (msg instanceof FileRequest) {
                 FileRequest fileRequest = (FileRequest) msg;
-                if (Files.exists(Paths.get("cloud_storage/" + fileRequest.getFilename()))) {
-                    FileMessage message = new FileMessage(Paths.get("cloud_storage/" + fileRequest.getFilename()));
+                if (Files.exists(Paths.get(System.getProperty("user.dir") + File.separator + "server_storage" + File.separator + fileRequest.getFilename()))) {
+                    FileMessage message = new FileMessage(Paths.get(System.getProperty("user.dir") + File.separator + "server_storage" + File.separator + fileRequest.getFilename()));
                     ctx.writeAndFlush(message);
                 }
             }
             if (msg instanceof FileMessage){
-                Files.createFile(Paths.get("cloud_storage/" + ((FileMessage) msg).getFilename()));
-                Files.write(Paths.get("cloud_storage/" + ((FileMessage) msg).getFilename()), ((FileMessage) msg).getData());
+                Files.createFile(Paths.get(System.getProperty("user.dir") + File.separator + "server_storage" + File.separator + ((FileMessage) msg).getFilename()));
+                Files.write(Paths.get(System.getProperty("user.dir") + File.separator + "server_storage" + File.separator + ((FileMessage) msg).getFilename()), ((FileMessage) msg).getData());
             }
             if (msg instanceof FileListRequest){
                 FileListRequest fileListRequest = new FileListRequest(((FileListRequest) msg).getDirectory());
