@@ -1,6 +1,5 @@
 package server;
 
-import files.FileListRequest;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -39,7 +38,7 @@ public class Server {
                     .option(ChannelOption.TCP_NODELAY, true)
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
-            ChannelFuture future = serverBootstrap.bind(8189).sync();
+            ChannelFuture future = serverBootstrap.bind(8190).sync();
             future.channel().closeFuture().sync();
         } catch (Exception e){
             e.printStackTrace();

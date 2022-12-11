@@ -1,84 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="703.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ClientController">
+<AnchorPane prefHeight="706.0" prefWidth="791.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ClientController">
    <children>
-      <MenuBar prefHeight="25.0" prefWidth="400.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <MenuBar layoutX="450.0" prefHeight="25.0" prefWidth="400.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-                  <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <Separator layoutX="397.0" layoutY="3.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="3.0" />
-      <Separator layoutX="447.0" layoutY="3.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="3.0" />
-      <ListView fx:id="serverList" layoutX="459.0" layoutY="31.0" prefHeight="630.0" prefWidth="380.0" />
-      <TextArea fx:id="statustext" editable="false" layoutX="9.0" layoutY="663.0" prefHeight="38.0" prefWidth="380.0" />
-      <Button fx:id="delete" contentDisplay="GRAPHIC_ONLY" layoutX="402.0" layoutY="453.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="43.0" text="delete local">
-         <graphic>
-            <ImageView fitHeight="45.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@delete1.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <Button fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="402.0" layoutY="561.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="43.0" text="refresh">
-         <graphic>
-            <ImageView fitHeight="89.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@refresh.png" />
-               </image></ImageView>
-         </graphic></Button>
-      <Button fx:id="sendLocal" contentDisplay="GRAPHIC_ONLY" layoutX="402.0" layoutY="243.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="43.0" text="Send to local machine">
-         <graphic>
-            <ImageView fitHeight="150.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@back.png" />
-               </image></ImageView>
-         </graphic></Button>
-      <Button fx:id="sendNetwork" contentDisplay="GRAPHIC_ONLY" layoutX="402.0" layoutY="31.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="43.0" text="Send to network">
-         <graphic>
-            <ImageView fitHeight="150.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@forward.png" />
-               </image></ImageView>
-         </graphic></Button>
-      <ProgressBar fx:id="statusbar" layoutX="459.0" layoutY="663.0" prefHeight="38.0" prefWidth="380.0" progress="0.0" />
-      <ListView fx:id="localList" layoutX="10.0" layoutY="31.0" prefHeight="630.0" prefWidth="380.0" />
+      <AnchorPane fx:id="clientWindow" layoutX="5.0" prefHeight="706.0" prefWidth="832.0" visible="false">
+         <children>
+            <MenuBar layoutX="-7.0" layoutY="1.0" prefHeight="27.0" prefWidth="849.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Menu">
+                  <items>
+                    <MenuItem fx:id="btnMenuConnect" mnemonicParsing="false" text="Login Menu" />
+                        <MenuItem fx:id="btnMenuClose" mnemonicParsing="false" text="Close Application" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem fx:id="btnMenuAbout" mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <Separator layoutX="448.0" layoutY="28.0" orientation="VERTICAL" prefHeight="685.0" prefWidth="6.0" />
+            <Separator layoutX="394.0" layoutY="28.0" orientation="VERTICAL" prefHeight="685.0" prefWidth="6.0" />
+            <ListView fx:id="serverList" layoutX="456.0" layoutY="35.0" prefHeight="666.0" prefWidth="373.0" />
+            <Button fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="400.0" layoutY="500.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="45.0" text="refresh">
+               <graphic>
+                  <ImageView fitHeight="89.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@refresh.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="sendLocal" contentDisplay="GRAPHIC_ONLY" layoutX="400.0" layoutY="35.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="43.0" text="Send to local machine">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="sendNetwork" contentDisplay="GRAPHIC_ONLY" layoutX="400.0" layoutY="268.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="43.0" text="Send to network">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@forward.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ListView fx:id="localList" layoutX="9.0" layoutY="35.0" prefHeight="666.0" prefWidth="380.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="loginWindow" layoutX="10.0" layoutY="10.0" prefHeight="703.0" prefWidth="832.0">
+         <children>
+            <TextField fx:id="serverIp" layoutX="372.0" layoutY="235.0" promptText="Server IP" />
+            <TextField fx:id="serverPort" layoutX="548.0" layoutY="235.0" prefHeight="25.0" prefWidth="56.0" promptText="Port" />
+            <TextField fx:id="csnLogin" layoutX="374.0" layoutY="323.0" prefHeight="25.0" prefWidth="157.0" />
+            <PasswordField fx:id="csnPswd" layoutX="374.0" layoutY="359.0" prefHeight="25.0" prefWidth="157.0" />
+            <Button fx:id="btnLogin" layoutX="550.0" layoutY="323.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="56.0" text="Login" />
+            <Text layoutX="262.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="262.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="262.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Server">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="413.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="420.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Server">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="errorLogin" fill="#ff1100" layoutX="419.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Button fx:id="btnRegistration" layoutX="623.0" layoutY="233.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="99.0" text="Registration" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="registrationWindow" blendMode="DARKEN" layoutX="4.0" layoutY="3.0" prefHeight="706.0" prefWidth="842.0" visible="false">
+         <children>
+            <Button fx:id="btnAcceptRegistration" layoutX="442.0" layoutY="405.0" mnemonicParsing="false" text="Register" />
+            <TextField fx:id="regName" layoutX="339.0" layoutY="283.0" promptText="First Name" />
+            <TextField fx:id="regEmail" layoutX="339.0" layoutY="323.0" promptText="Email" />
+            <PasswordField fx:id="regPassword" layoutX="339.0" layoutY="364.0" promptText="Password" />
+            <Text layoutX="361.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registration" wrappingWidth="128">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="regStatus" fill="#ff2c00" layoutX="333.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="177.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Button fx:id="btnRegistrationBack" layoutX="339.0" layoutY="406.0" mnemonicParsing="false" text="Back" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

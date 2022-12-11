@@ -1,5 +1,7 @@
 package server;
 
+import files.RegistrationMessage;
+
 import java.sql.*;
 
 public class DatabaseHandler {
@@ -21,6 +23,22 @@ public class DatabaseHandler {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static boolean registerUser(RegistrationMessage msg)  {
+        String sql = "INSERT INTO users (username, password, directory, mail) VALUES " +
+                "(?, ?, ?, ?)";
+        try {
+        PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, msg.getName());
+            stmt.setString(2, msg.getPassword());
+            stmt.setString(3, msg.getName());
+            stmt.setString(4, msg.getEmail());
+            return stmt.executeUpdate() != -1;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
 
