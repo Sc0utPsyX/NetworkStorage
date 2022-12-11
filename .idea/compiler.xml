@@ -7,9 +7,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="client" />
         <module name="server" />
+        <module name="client" />
+        <module name="messages" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common" target="19" />
+      <module name="storage" target="19" />
+    </bytecodeTargetLevel>
   </component>
 </project>

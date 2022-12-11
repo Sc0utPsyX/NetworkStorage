@@ -11,15 +11,19 @@ public class LoginMessage extends AbstractMessage{
         this.directory = directory;
     }
 
-    public String directory;
+    public String getDirectory() {
+        return directory;
+    }
+
+    private String directory;
 
     public LoginMessage() {
     }
 
-    public LoginMessage(String directory) {
-        this.login = null;
-        this.password = null;
-        this.directory = directory;
+
+    public LoginMessage(String serverIp, int serverPort) {
+        this.serverIp = serverIp;
+        this.serverPort = serverPort;
     }
 
     public LoginMessage(String password, String login, String ip, int port) {
